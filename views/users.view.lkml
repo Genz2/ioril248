@@ -14,12 +14,22 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    map_layer_name: countries
   }
+
   dimension: country {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
+    drill_fields: [coordenadas_cadastral,city]
   }
+
+  dimension: coordenadas_cadastral {
+    type: location
+    sql_latitude: 40.7128;;
+    sql_longitude: -74.0060;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
